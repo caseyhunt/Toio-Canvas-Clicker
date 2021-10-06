@@ -130,3 +130,15 @@ h4{
   left: 20px;
   top: 20px;
 }
+
+.position, #light{
+  margin-top: 40px;
+}
+
+#getPos{
+  display:block;
+}
+
+#light{
+  margin-bottom: 40px;
+}

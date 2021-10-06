@@ -241,7 +241,7 @@ for (let i = 0; i < value.byteLength; i++) {
   a.push('0x' + ('00' + value.getUint8(i).toString(16)).slice(-2));
 }
 
-// console.log(a);
+console.log(a);
 var xoff = 32;
 var yoff = 44;
 
@@ -323,36 +323,28 @@ function getMousePos(){
        var buf1 = new Uint8Array([ 0x03, 0x00, 0x05, 0x00, 0x50, 0x00, 0x00]);
        var buf4 = new Uint8Array([0x03,0x00,0x05,0x00,0x50,0x00, 0x00,ygo[0], ygo[1],xgo[0],xgo[1],0x5a,0x00]);
 
-       //var buf4 = new Uint8Array([ 0x03, 0x00, 0x05, 0x00, 0x50, 0x00, 0x00, 0x76,0x00,0x36,0x00,0xa5,0x00]);
-
-       //var a16 = new Uint16Array([0x0050, 0x0050, 0x005a]);
-      //const buffer = new ArrayBuffer(16);
-      //const view = new DataView(buffer);
-       //var a16 = new Uint16Array([view.setInt16(1, 32767,true), view.setInt16(1, 32767,true), view.setInt16(1, 32767,true)]);
-       // buf = new Uint8Array(a16, 2, 4);
-       // var buf3 = new Uint8Array(10);
-       // buf3.set(buf1);
-       // buf3.set(buf, buf1.length);
-       // a16[0] = 0x0050;
-       // a16[1] = 0x0050;
-      //[ 0x03, 0x00, 0x05, 0x00, 0x50, 0x00, 0x00]
-        //[ 0x03, 0x00, 0x05, 0x00, 0x50, 0x00, 0x00, 0x00,0x50,0x00,0x50,0x00,0x5a]
-      //0x0050, 0x0050, 0x005a
-      // const buf = new Uint16Array([ 0x01, 0x01, 0x01, 0x50, 0x02, 0x01, 0x50]);
-      // const buf1 = new Uint8Array([0x02, 0x14, 0x64 ]);
-      // let buf3 = new ArrayBuffer(10);
-      // buf3 = [ 0x01, 0x01, 0x01, 0x50, 0x02, 0x01, 0x50];
-      // console.log(buf);
       console.log(buf4);
-      // console.log(buf1);
-      // console.log(a8);
-      // console.log(a16);
-      // console.log(buf3);
-      //console.log(buf1);
-       //buf = new Uint8Array([ 0x01, 0x01, 0x01, 0x50, 0x02, 0x01, 0x50]);
-        cube.moveChar.writeValue(buf4);
-        //cube.moveChar.writeValue(buf3);
 
+        cube.moveChar.writeValue(buf4);
+
+
+}
+}
+
+function lightControl(on){
+  console.log(on);
+  cube = gCubes[0];
+if( ( cube !== undefined ) && ( cube.lightChar !== undefined ) ){
+  if(on == true){
+    const buf = new Uint8Array([ 0x03, 0x00, 0x01, 0x01, 0xFF, 0xFF, 0xFF]);
+    cube.lightChar.writeValue( buf );
+    console.log('light on');
+}
+else{
+  const buf = new Uint8Array([ 0x03, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00]);
+  cube.lightChar.writeValue( buf );
+  console.log('light off');
+}
 }
 }
 
@@ -385,6 +377,14 @@ function getMousePos(){
       document.getElementById('canvas').addEventListener('click', async ev => {
         getMousePos();
       });
+
+      document.getElementById("on").addEventListener("click", async ev=>{
+        lightControl(true);
+      })
+
+      document.getElementById("off").addEventListener("click", async ev=>{
+        lightControl(false);
+      })
 
       // document.getElementById( 'btMoveFW' ).addEventListener( 'mousedown', async ev => {
       //   cubeMove( 1 ,0 , speed1);
