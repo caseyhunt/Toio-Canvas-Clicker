@@ -279,8 +279,8 @@ function drawToio(){
 
     var ypos = (toioy[0]/toiomax[1])*300;
     var xpos = (toiox[0]/toiomax[0])*300;
-    document.getElementById("toio").style.left = (ypos).toString() + "px";
-    document.getElementById('toio').style.top = (xpos).toString() + "px";
+    document.getElementById("toio").style.left = (xpos).toString() + "px";
+    document.getElementById('toio').style.top = (ypos).toString() + "px";
     console.log("moving to: x: " + xpos + " y: " + ypos);
   }
 }
@@ -385,7 +385,7 @@ function getMousePos(){
        var buf = new ArrayBuffer(10)
        var a8 = new Uint8Array(buf);
        var buf1 = new Uint8Array([ 0x03, 0x00, 0x05, 0x00, 0x50, 0x00, 0x00]);
-       var buf4 = new Uint8Array([0x03,0x00,0x05,0x00,0x50,0x00, 0x00,ygo[0], ygo[1],xgo[0],xgo[1],0x5a,0x00]);
+       var buf4 = new Uint8Array([0x03,0x00,0x05,0x00,0x50,0x00, 0x00,xgo[0], xgo[1],ygo[0],ygo[1],0x5a,0x00]);
 
       console.log(buf4);
 
