@@ -442,6 +442,10 @@ else{
         getMousePos();
       });
 
+      document.getElementById('canvas').addEventListener('touchstart', async ev => {
+        getMousePos();
+      });
+
 
   }
 
