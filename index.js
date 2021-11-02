@@ -277,8 +277,8 @@ function drawToio(){
   if(toiox[1] != toiox[0] || toioy[1] != toioy[0]){
     console.log("toio moving");
 
-    var ypos = (toioy[0]/toiomax[1])*300;
-    var xpos = (toiox[0]/toiomax[0])*300;
+    var ypos = (toioy[0]/toiomax[1])*250;
+    var xpos = (toiox[0]/toiomax[0])*250;
     document.getElementById("toio").style.left = (xpos).toString() + "px";
     document.getElementById('toio').style.top = (ypos).toString() + "px";
     console.log("moving to: x: " + xpos + " y: " + ypos);
@@ -287,8 +287,8 @@ function drawToio(){
 
 function getMousePos(){
   const rect = event.target.getBoundingClientRect();
-  var x = (event.clientX - rect.left)/300;
-  var y = (event.clientY- rect.top)/300;
+  var x = (event.clientX - rect.left)/250;
+  var y = (event.clientY- rect.top)/250;
   console.log("mouse click x : " + x + " y : " + y);
   var xdiff = toiomax[0]-toiomin[0];
   var xmove = parseInt(x*xdiff);
